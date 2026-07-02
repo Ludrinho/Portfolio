@@ -186,4 +186,191 @@
         .modal-desc { font-size: 1.05rem; color: #cdced4; line-height: 1.6; font-weight: 300; margin-bottom: 30px; white-space: pre-line; }
 
         /* Styling für die Social-Logos im Pop-up */
-        .modal-socials { display: flex; gap: 20px; border-top: 1px solid #2d3139; padding-top
+        .modal-socials { display: flex; gap: 20px; border-top: 1px solid #2d3139; padding-top: 20px; }
+        .modal-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background-color: rgba(255,255,255,0.05); border-radius: 8px; fill: #8a929a; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .modal-socials a:hover { background-color: rgba(255,255,255,0.1); fill: #ffffff; border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .modal-socials svg { width: 22px; height: 22px; }
+
+        footer { background-color: #000000; padding: 120px 4%; text-align: center; }
+        .footer-text { font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; letter-spacing: -2px; margin-bottom: 40px; }
+        .mail-btn { display: inline-block; font-size: 1.2rem; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ff2a5f; padding-bottom: 8px; transition: color 0.3s; font-weight: 600; }
+        .mail-btn:hover { color: #ff2a5f; }
+
+        @media (max-width: 900px) {
+            .portfolio-grid { grid-template-columns: 1fr; margin-top: 40px; }
+            .grid-item { height: 400px !important; }
+            .grid-item.hero-item { grid-column: span 1; height: 350px; align-items: center; text-align: center; padding: 30px; }
+            .hero-item .item-content { align-items: center; text-align: center; }
+            header { padding: 50px 4% 30px 4%; }
+            .logo-area { flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 15px; }
+            .header-right { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <h1>YOUR NAME</h1>
+        <div class="header-right">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/dein-profil" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/dein-profil" target="_blank">Instagram</a>
+            </div>
+            <div class="status">Available for Sports Events</div>
+        </div>
+    </div>
+    <p class="hero-text">
+        I bring brands to life through <span class="highlight">live sports entertainment</span> and large-scale event operations. 
+        <span>Bridging elite on-site venue logistics with structured corporate execution.</span>
+    </p>
+</header>
+
+<main class="portfolio-grid">
+
+    <div class="grid-item hero-item">
+        <img src="icon.jpg" alt="Icon League">
+        <div class="item-content">
+            <span class="item-tag">Live Sports Entertainment</span>
+            <h2 class="item-title">The Icon League</h2>
+            <button class="info-btn" onclick="openModal('icon-league')">View Project Details</button>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" alt="Kin-Ball">
+        <div class="item-content">
+            <span class="item-tag">International Sports Growth</span>
+            <h2 class="item-title">IKBF</h2>
+            <button class="info-btn" onclick="openModal('ikbf')">View Project Details</button>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a27?auto=format&fit=crop&q=80&w=1000" alt="Basketball">
+        <div class="item-content">
+            <span class="item-tag">Major Event Hospitality</span>
+            <h2 class="item-title">FC Bayern & Paris Basketball</h2>
+            <button class="info-btn" onclick="openModal('basketball')">View Project Details</button>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1000" alt="Football">
+        <div class="item-content">
+            <span class="item-tag">Coach Qualification & Licensing</span>
+            <h2 class="item-title">Bavarian Football Association</h2>
+            <button class="info-btn" onclick="openModal('bfv')">View Project Details</button>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800" alt="Outdoor">
+        <div class="item-content">
+            <span class="item-tag">Sports & Leisure Coordination</span>
+            <h2 class="item-title">Cap Armor</h2>
+            <button class="info-btn" onclick="openModal('cap-armor')">View Project Details</button>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Corporate">
+        <div class="item-content">
+            <span class="item-tag">Strategic Logistics & Budgeting</span>
+            <h2 class="item-title">McKinsey & Company</h2>
+            <button class="info-btn" onclick="openModal('mckinsey')">View Project Details</button>
+        </div>
+    </div>
+
+</main>
+
+<div id="modal-container" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <span id="modal-tag" class="modal-tag">Tag</span>
+        <h2 id="modal-title" class="modal-title">Title</h2>
+        <p id="modal-desc" class="modal-desc">Description goes here...</p>
+        
+        <div id="modal-socials" class="modal-socials" style="display: none;">
+            <a id="modal-link-instagram" href="#" target="_blank" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a id="modal-link-twitch" href="#" target="_blank" title="Twitch">
+                <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <h2 class="footer-text">Let’s build the next big thing together.</h2>
+    <a href="mailto:your-email@example.com" class="mail-btn">Get in touch</a>
+</footer>
+
+<script>
+    const projectData = {
+        'icon-league': {
+            tag: 'Live Sports Entertainment',
+            title: 'The Icon League — Junior to Event & Operations Manager',
+            desc: 'Season 03 (Junior Event Manager):\nContributed within a 7-person team to engineer a high-impact arena tour across 15 matchdays in just 3 months. Achieved 100% sold-out capacities in Germany\'s largest stadiums (including Hamburg, Hannover, Leipzig, Düsseldorf) and packed Vienna\'s Stadthalle with 15,000 spectators. Handled ticketing, sponsor activations, and VIP hospitality.\n\nSeason 04 (Event & Operations Manager):\nStepped up to shoulder full operational execution as a downsized 2-person team, carrying the entire project responsibility just the two of us. Concepted and constructed a pro-sports arena inside a raw exhibition hall from scratch—installing custom grandstands, broadcast lighting, pitch setups, and locker rooms under strict corporate design guidelines. Solely responsible for managing all ticketing workflows throughout the season using ticket.io, handling everything from initial store preparation to final ticket distribution. Culminated in a spectacular, 100% sold-out grand finale at the Hallenstadion Zürich with 13,000 spectators and celebrity guest features including Toni Kroos, RAF Camora, Arda Saatci, and Agit Kabayel. Driven by a relentless hands-on mentality from empty floor to final whistle.',
+            socials: {
+                instagram: 'https://www.instagram.com/theiconleague/',
+                twitch: 'https://www.twitch.tv/theiconleague'
+            }
+        },
+        'ikbf': {
+            tag: 'International Sports Growth',
+            title: 'IKBF — International Event Manager',
+            desc: 'Driving global outreach and executing strategic measures to promote, expand, and scale the unique sport of Kin-Ball on an international scale.'
+        },
+        'basketball': {
+            tag: 'Major Event Hospitality',
+            title: 'FC Bayern München & Paris Basketball',
+            desc: 'Active court-side support and event operations volunteer during high-profile pro basketball fixtures, optimizing spectator workflows, ticketing gates, and general fan engagement.'
+        },
+        'bfv': {
+            tag: 'Coach Qualification & Licensing',
+            title: 'Bavarian Football Association (BFV)',
+            desc: 'Project management focused on structuring UEFA certification courses, coaching academies, and managing operational workflows ahead of the seasonal club roll-outs.'
+        },
+        'cap-armor': {
+            tag: 'Sports & Leisure Coordination',
+            title: 'Cap Armor — Sport Coordinator',
+            desc: 'On-site planning and execution of multidisciplinary sports programs, managing team schedules, workforce allocation, and active outdoor event coordination.'
+        },
+        'mckinsey': {
+            tag: 'Strategic Logistics & Budgeting',
+            title: 'McKinsey & Company — Executive Support',
+            desc: 'The foundation of operational excellence. Managing complex global logistics, rigid cost reporting, timeline governance, and calendar coordination alongside elite corporate consulting teams.'
+        }
+    };
+
+    function openModal(projectId) {
+        const data = projectData[projectId];
+        if(data) {
+            document.getElementById('modal-tag').innerText = data.tag;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-desc').innerText = data.desc;
+            
+            const socialsContainer = document.getElementById('modal-socials');
+            if (data.socials) {
+                document.getElementById('modal-link-instagram').href = data.socials.instagram;
+                document.getElementById('modal-link-twitch').href = data.socials.twitch;
+                socialsContainer.style.display = 'flex';
+            } else {
+                socialsContainer.style.display = 'none';
+            }
+            
+            const modal = document.getElementById('modal-container');
+            modal.classList.add('show');
+        }
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal-container');
+        modal.classList.remove('show');
+    }
+</script>
+
+</body>
+</html>
