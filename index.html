@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Event Operations & Activation</title>
+    <style>
+        /* Minimalistisches Editorial Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #0d0f12; color: #ffffff; overflow-x: hidden; }
+        
+        /* Große, edle Headline wie bei antispaces */
+        header { padding: 80px 4% 40px 4%; max-width: 1600px; margin: 0 auto; }
+        .logo-area { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 60px; }
+        .logo-area h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; line-by-line: tight; }
+        .logo-area .status { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #8a929a; border: 1px solid #333; padding: 8px 16px; border-radius: 50px; }
+        
+        .hero-text { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.2; max-width: 1100px; color: #f5f5f7; letter-spacing: -1px; margin-bottom: 40px; }
+        .hero-text span { color: #8a929a; } /* Für den eleganten Kontrast-Effekt */
+
+        /* Das Bilder-Grid im antispaces Style */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding: 0 4%; max-width: 1600px; margin: 0 auto 80px auto; }
+        
+        /* Einzelne Grid-Elemente (Bento-Style) */
+        .grid-item { position: relative; background-color: #16191f; border-radius: 12px; overflow: hidden; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .grid-item:hover { transform: scale(1.01); }
+        
+        /* Größen-Variationen für ein dynamisches Layout */
+        .size-large { grid-column: span 8; min-height: 550px; }
+        .size-medium { grid-column: span 4; min-height: 550px; }
+        .size-small { grid-column: span 4; min-height: 400px; }
+        .size-wide { grid-column: span 6; min-height: 450px; }
+        .size-full { grid-column: span 12; min-height: 600px; }
+
+        /* Hintergrundbilder */
+        .grid-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) brightness(70%); transition: filter 0.4s ease; z-index: 1; }
+        .grid-item:hover img { filter: grayscale(0%) brightness(85%); }
+
+        /* Text über den Bildern */
+        .item-content { position: relative; z-index: 2; padding: 30px; background: linear-gradient(to top, rgba(13,15,18,0.95) 0%, rgba(13,15,18,0.4) 60%, transparent 100%); width: 100%; }
+        .item-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 8px; display: inline-block; }
+        .item-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .item-desc { font-size: 0.95rem; color: #cdced4; max-width: 500px; font-weight: 300; }
+
+        /* Minimalistischer Footer mit Kontakt */
+        footer { background-color: #000000; padding: 100px 4%; text-align: center; border-top: 1px solid #16191f; }
+        .footer-text { font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; letter-spacing: -2px; margin-bottom: 40px; }
+        .mail-btn { display: inline-block; font-size: 1.2rem; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ff2a5f; padding-bottom: 8px; transition: color 0.3s; font-weight: 600; }
+        .mail-btn:hover { color: #ff2a5f; }
+
+        /* Responsive Design für Handys */
+        @media (max-width: 900px) {
+            .portfolio-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 15px; }
+            .grid-item { grid-column: span 12 !important; min-height: 350px !important; }
+            header { padding: 40px 4% 20px 4%; }
+            .logo-area { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <h1>DEIN NAME</h1>
+        <div class="status">Verfügbar für Projekte</div>
+    </div>
+    <p class="hero-text">
+        Ich realisiere High-Impact Sportevents und emotionale Marken-Aktivierungen. <span>Von der ersten kreativen Show-Idee bis zur perfekten Logistik vor Ort.</span>
+    </p>
+</header>
+
+<main class="portfolio-grid">
+
+    <div class="grid-item size-large">
+        <img src="https://images.unsplash.com/photo-1540747737956-378724044282?auto=format&fit=crop&q=80&w=1200" alt="Icon League">
+        <div class="item-content">
+            <span class="item-tag">The Icon League</span>
+            <h2 class="item-title">Bespielung der größten Arenen Deutschlands</h2>
+            <p class="item-desc">Komplette operative Planung und Live-Umsetzung der gesamten Season im Zweier-Team. Ticketing, Logistik, Foodtrucks und VIP-Catering.</p>
+        </div>
+    </div>
+
+    <div class="grid-item size-medium">
+        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" alt="Partner Activation">
+        <div class="item-content">
+            <span class="item-tag">Brand Activation</span>
+            <h2 class="item-title">Erlebbare Sponsoren</h2>
+            <p class="item-desc">Konzeption kreativer Promotionsflächen, damit Fans Marken im Stadion nicht nur sehen, sondern emotional erleben.</p>
+        </div>
+    </div>
+
+    <div class="grid-item size-wide">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" alt="McKinsey Structures">
+        <div class="item-content">
+            <span class="item-tag">Operations & Controlling</span>
+            <h2 class="item-title">Präzision & Budgetsteuerung</h2>
+            <p class="item-desc">Logistische Planung und striktes Kostenreporting auf Top-Management-Ebene bei McKinsey & Company.</p>
+        </div>
+    </div>
+
+    <div class="grid-item size-wide">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1000" alt="Fußball Verband">
+        <div class="item-content">
+            <span class="item-tag">Bayerischer Fußball-Verband</span>
+            <h2 class="item-title">Saisonvorbereitung & Ausbildung</h2>
+            <p class="item-desc">Projektmanagement zur Strukturierung von Trainerausbildungen und operativer Vorbereitung des Saisonstarts.</p>
+        </div>
+    </div>
+
+    <div class="grid-item size-full">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=1600" alt="Entertainment & Show">
+        <div class="item-content">
+            <span class="item-tag">ZSH & Innovation</span>
+            <h2 class="item-title">Einführung neuer Sportarten</h2>
+            <p class="item-desc">Implementierung von Kin-Ball in den Kurskatalog des ZSH sowie multidisziplinäre Trainingsleitung.</p>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <h2 class="footer-text">Lust auf das nächste große Event?</h2>
+    <a href="mailto:deine-email@beispiel.de" class="mail-btn">Lass uns connecten</a>
+</footer>
+
+</body>
+</html>
