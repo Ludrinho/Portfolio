@@ -17,7 +17,7 @@
         .hero-text { font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.2; max-width: 1100px; color: #f5f5f7; letter-spacing: -1px; }
         .hero-text span { color: #8a929a; }
 
-        /* Robustes, klares Grid: Immer 2 Spalten am PC, 1 Spalte am Handy */
+        /* Seamless Grid */
         .portfolio-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -25,13 +25,14 @@
             padding: 0; 
             max-width: 100vw; 
             margin: 40px auto 80px auto; 
-            background-color: #16191f; /* Erzeugt feine Trennlinien */
+            background-color: #16191f;
         }
         
+        /* Standard Kachel-Höhe */
         .grid-item { 
             position: relative; 
             background-color: #16191f; 
-            height: 500px; /* Feste Höhe, damit nichts kollabiert */
+            height: 500px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -39,19 +40,33 @@
             text-align: center; 
             padding: 30px; 
             overflow: hidden;
+            transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Hintergrundbilder */
-        .grid-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(35%); transition: filter 0.4s ease; z-index: 1; }
-        .grid-item:hover img { filter: brightness(20%); }
+        /* DIE HERO KACHEL (Icon League) — Nutzt volle Breite & wächst beim Drüberwischen */
+        .grid-item.hero-item {
+            grid-column: span 2;
+            height: 450px; /* Start-Höhe im Panorama-Format */
+        }
+        .grid-item.hero-item:hover {
+            height: 650px; /* Wird deutlich größer beim Drüberwischen */
+        }
 
-        /* Text & Button exakt zentriert im mittleren Bereich */
-        .item-content { position: relative; z-index: 2; max-width: 85%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .item-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 12px; display: block; }
-        .item-title { font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.2; }
+        /* Bilder standardmäßig abgedunkelt für die Lesbarkeit der Schrift... */
+        .grid-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(35%); transition: filter 0.4s ease; z-index: 1; }
         
-        /* Das klickbare Kästchen / Button unter der Schrift */
-        .info-btn { display: inline-block; background-color: rgba(255, 255, 255, 0.15); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); }
+        /* ...ABER beim Drüberwischen wird das Bild komplett HELL und sichtbar! */
+        .grid-item:hover img { 
+            filter: brightness(90%); 
+        }
+
+        /* Text & Button zentriert */
+        .item-content { position: relative; z-index: 2; max-width: 85%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .item-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 12px; display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .item-title { font-size: clamp(1.4rem, 2vw, 2.2rem); font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.2; text-shadow: 0 2px 15px rgba(0,0,0,0.8); }
+        
+        /* Button Style */
+        .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.6); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .info-btn:hover { background-color: #ffffff; color: #0d0f12; }
 
         /* POP-UP BOX (Modal) STYLING */
@@ -71,10 +86,11 @@
         .mail-btn { display: inline-block; font-size: 1.2rem; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ff2a5f; padding-bottom: 8px; transition: color 0.3s; font-weight: 600; }
         .mail-btn:hover { color: #ff2a5f; }
 
-        /* Responsive Design für Mobilgeräte */
         @media (max-width: 900px) {
             .portfolio-grid { grid-template-columns: 1fr; }
-            .grid-item { height: 450px !important; }
+            .grid-item { height: 400px !important; }
+            .grid-item.hero-item { grid-column: span 1; height: 350px; }
+            .grid-item.hero-item:hover { height: 350px; }
         }
     </style>
 </head>
@@ -82,17 +98,17 @@
 
 <header>
     <div class="logo-area">
-        <h1>ADRIEN LUFT</h1>
+        <h1>YOUR NAME</h1>
         <div class="status">Available for Sports Events</div>
     </div>
     <p class="hero-text">
-        I bring brands to life through live sports entertainment and large-scale event operations. <span>Combining relentless hands-on stadium operations with corporate execution.</span>
+        I build high-octane sports events and immersive brand experiences. <span>Combining relentless hands-on stadium operations with corporate execution.</span>
     </p>
 </header>
 
 <main class="portfolio-grid">
 
-    <div class="grid-item">
+    <div class="grid-item hero-item">
         <img src="icon.jpg" alt="Icon League">
         <div class="item-content">
             <span class="item-tag">Live Sports Entertainment</span>
@@ -105,7 +121,7 @@
         <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" alt="Kin-Ball">
         <div class="item-content">
             <span class="item-tag">International Sports Growth</span>
-            <h2 class="item-title">International Kin-Ball Federation</h2>
+            <h2 class="item-title">IKBF</h2>
             <button class="info-btn" onclick="openModal('ikbf')">View Project Details</button>
         </div>
     </div>
@@ -114,7 +130,7 @@
         <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a27?auto=format&fit=crop&q=80&w=1000" alt="Basketball">
         <div class="item-content">
             <span class="item-tag">Major Event Hospitality</span>
-            <h2 class="item-title">FC Bayern München & Paris Basketball</h2>
+            <h2 class="item-title">FC Bayern & Paris Basketball</h2>
             <button class="info-btn" onclick="openModal('basketball')">View Project Details</button>
         </div>
     </div>
@@ -159,7 +175,7 @@
 
 <footer>
     <h2 class="footer-text">Let’s build the next big thing together.</h2>
-    <a href="mailto:adrienl@hotmail.de" class="mail-btn">Get in touch</a>
+    <a href="mailto:your-email@example.com" class="mail-btn">Get in touch</a>
 </footer>
 
 <script>
@@ -213,6 +229,9 @@
         modal.classList.remove('show');
     }
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
