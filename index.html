@@ -166,7 +166,7 @@
         .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.7); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 3; }
         .info-btn:hover { background-color: #ffffff; color: #0d0f12; }
 
-        /* POP-UP OVERLAY (Das Bild liegt JETZT hier im Hintergrund des gesamten Screens) */
+        /* POP-UP OVERLAY */
         .modal { 
             display: none; 
             position: fixed; 
@@ -175,7 +175,7 @@
             top: 0; 
             width: 100%; 
             height: 100%; 
-            background-color: rgba(13, 15, 18, 0.85); /* Abdunkelung des Overlays */
+            background-color: rgba(13, 15, 18, 0.85); 
             backdrop-filter: blur(10px); 
             justify-content: center; 
             align-items: center; 
@@ -188,7 +188,7 @@
         }
         .modal.show { display: flex; opacity: 1; }
         
-        /* Der Textkasten im Pop-up bleibt clean und freistehend */
+        /* Der Textkasten im Pop-up */
         .modal-content { 
             background-color: #16191f; 
             border: 1px solid #2d3139; 
@@ -241,7 +241,7 @@
         </div>
     </div>
     <p class="hero-text">
-        I bring brands to life through <span class="highlight">live sports entertainment</span> and large-scale event operations. 
+        I bring brands to life through live sports entertainment and large-scale event operations.<br>
         <span>Bridging elite on-site venue logistics with structured corporate execution.</span>
     </p>
 </header>
@@ -375,7 +375,6 @@
             
             const modal = document.getElementById('modal-container');
             
-            // Bild wird als Hintergrund für den gesamten Bildschirm gesetzt, nicht in die Box
             if (data.bgImage) {
                 modal.style.backgroundImage = `linear-gradient(rgba(13, 15, 18, 0.75), rgba(13, 15, 18, 0.75)), url('${data.bgImage}')`;
             } else {
