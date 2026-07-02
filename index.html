@@ -28,7 +28,7 @@
             background-color: #16191f;
         }
         
-        /* Feste Kachel-Höhe für Stabilität */
+        /* Standard Kacheln */
         .grid-item { 
             position: relative; 
             background-color: #16191f; 
@@ -40,16 +40,25 @@
             text-align: center; 
             padding: 30px; 
             overflow: hidden;
-            transition: opacity 0.3s ease;
         }
 
-        /* Hero Kachel (Icon League) bleibt starr auf Panorama-Höhe */
+        /* Hero Kachel (Icon League) */
         .grid-item.hero-item {
             grid-column: span 2;
             height: 480px; 
+            align-items: flex-end; /* Schiebt den Inhalt nach rechts */
+            justify-content: flex-start; /* Bereitet die Verschiebung nach oben vor */
+            padding-top: 80px; /* Verschiebt den Inhalt leicht nach oben */
+            padding-right: 8%; /* Abstand vom rechten Rand */
         }
 
-        /* BILDER JETZT VON HAUS AUS HELL UND REICHT BELEUCHTET */
+        /* Ausrichtung für den Inhalt in der Hero-Kachel */
+        .hero-item .item-content {
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        /* Bilder standardmäßig hell */
         .grid-item img { 
             position: absolute; 
             top: 0; 
@@ -57,24 +66,23 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            filter: brightness(80%) contrast(105%); /* Schön hell, damit man alles sieht */
+            filter: brightness(80%) contrast(105%); 
             transition: transform 0.5s ease, filter 0.5s ease; 
             z-index: 1; 
         }
         
-        /* Minimaler, edler Fokus-Effekt beim Hovern ohne Größenänderung des Kastens */
         .grid-item:hover img { 
-            filter: brightness(95%) contrast(110%);
-            transform: scale(1.02); /* Minimaler Zoom im Bild für Hochwertigkeit */
+            filter: brightness(90%) contrast(110%);
+            transform: scale(1.02); 
         }
 
-        /* Text & Button zentriert */
+        /* Text & Button Layout */
         .item-content { position: relative; z-index: 2; max-width: 85%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .item-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 12px; display: block; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
         .item-title { font-size: clamp(1.4rem, 2vw, 2.2rem); font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.2; text-shadow: 0 2px 12px rgba(0,0,0,0.9); }
         
         /* Button Style */
-        .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.7); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.7); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 3; }
         .info-btn:hover { background-color: #ffffff; color: #0d0f12; }
 
         /* POP-UP BOX (Modal) STYLING */
@@ -97,7 +105,8 @@
         @media (max-width: 900px) {
             .portfolio-grid { grid-template-columns: 1fr; }
             .grid-item { height: 400px !important; }
-            .grid-item.hero-item { grid-column: span 1; height: 350px; }
+            .grid-item.hero-item { grid-column: span 1; height: 350px; align-items: center; text-align: center; padding: 30px; }
+            .hero-item .item-content { align-items: center; text-align: center; }
         }
     </style>
 </head>
@@ -220,6 +229,22 @@
     };
 
     function openModal(projectId) {
-        const data = projectData
+        const data = projectData[projectId];
+        if(data) {
+            document.getElementById('modal-tag').innerText = data.tag;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-desc').innerText = data.desc;
+            
+            const modal = document.getElementById('modal-container');
+            modal.classList.add('show');
+        }
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal-container');
+        modal.classList.remove('show');
+    }
+</script>
+
 </body>
 </html>
