@@ -9,12 +9,14 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #0d0f12; color: #ffffff; overflow-x: hidden; }
         
-        header { padding: 80px 4% 40px 4%; max-width: 1600px; margin: 0 auto; }
-        .logo-area { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
-        .logo-area h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
-        .logo-area .status { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #8a929a; border: 1px solid #333; padding: 8px 16px; border-radius: 50px; }
+        /* Kompakterer Header */
+        header { padding: 50px 4% 30px 4%; max-width: 1600px; margin: 0 auto; }
+        .logo-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .logo-area h1 { font-size: 2rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .logo-area .status { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: #8a929a; border: 1px solid #333; padding: 6px 14px; border-radius: 50px; }
         
-        .hero-text { font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.2; max-width: 1100px; color: #f5f5f7; letter-spacing: -1px; }
+        /* Natürlich fließender Text */
+        .hero-text { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.3; max-width: 1000px; color: #f5f5f7; letter-spacing: -0.5px; }
         .hero-text span { color: #8a929a; }
 
         /* Seamless Grid */
@@ -24,7 +26,7 @@
             gap: 2px; 
             padding: 0; 
             max-width: 100vw; 
-            margin: 40px auto 80px auto; 
+            margin: 30px auto 80px auto; 
             background-color: #16191f;
         }
         
@@ -46,13 +48,12 @@
         .grid-item.hero-item {
             grid-column: span 2;
             height: 480px; 
-            align-items: flex-end; /* Schiebt den Inhalt nach rechts */
-            justify-content: flex-start; /* Bereitet die Verschiebung nach oben vor */
-            padding-top: 80px; /* Verschiebt den Inhalt leicht nach oben */
-            padding-right: 8%; /* Abstand vom rechten Rand */
+            align-items: flex-end; 
+            justify-content: flex-start; 
+            padding-top: 80px; 
+            padding-right: 8%; 
         }
 
-        /* Ausrichtung für den Inhalt in der Hero-Kachel */
         .hero-item .item-content {
             align-items: flex-end;
             text-align: right;
@@ -103,10 +104,11 @@
         .mail-btn:hover { color: #ff2a5f; }
 
         @media (max-width: 900px) {
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; margin-top: 20px; }
             .grid-item { height: 400px !important; }
             .grid-item.hero-item { grid-column: span 1; height: 350px; align-items: center; text-align: center; padding: 30px; }
             .hero-item .item-content { align-items: center; text-align: center; }
+            header { padding: 40px 4% 20px 4%; }
         }
     </style>
 </head>
@@ -118,7 +120,7 @@
         <div class="status">Available for Sports Events</div>
     </div>
     <p class="hero-text">
-        I build high-octane sports events and immersive brand experiences. <span>Combining relentless hands-on stadium operations with corporate execution.</span>
+        I bring brands to life through live sports entertainment and large-scale event operations. <span>Bridging elite on-site venue logistics with structured corporate execution.</span>
     </p>
 </header>
 
