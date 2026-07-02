@@ -28,7 +28,7 @@
             background-color: #16191f;
         }
         
-        /* Standard Kachel-Höhe */
+        /* Feste Kachel-Höhe für Stabilität */
         .grid-item { 
             position: relative; 
             background-color: #16191f; 
@@ -40,33 +40,41 @@
             text-align: center; 
             padding: 30px; 
             overflow: hidden;
-            transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 0.3s ease;
         }
 
-        /* DIE HERO KACHEL (Icon League) — Nutzt volle Breite & wächst beim Drüberwischen */
+        /* Hero Kachel (Icon League) bleibt starr auf Panorama-Höhe */
         .grid-item.hero-item {
             grid-column: span 2;
-            height: 450px; /* Start-Höhe im Panorama-Format */
-        }
-        .grid-item.hero-item:hover {
-            height: 650px; /* Wird deutlich größer beim Drüberwischen */
+            height: 480px; 
         }
 
-        /* Bilder standardmäßig abgedunkelt für die Lesbarkeit der Schrift... */
-        .grid-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(35%); transition: filter 0.4s ease; z-index: 1; }
+        /* BILDER JETZT VON HAUS AUS HELL UND REICHT BELEUCHTET */
+        .grid-item img { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: brightness(80%) contrast(105%); /* Schön hell, damit man alles sieht */
+            transition: transform 0.5s ease, filter 0.5s ease; 
+            z-index: 1; 
+        }
         
-        /* ...ABER beim Drüberwischen wird das Bild komplett HELL und sichtbar! */
+        /* Minimaler, edler Fokus-Effekt beim Hovern ohne Größenänderung des Kastens */
         .grid-item:hover img { 
-            filter: brightness(90%); 
+            filter: brightness(95%) contrast(110%);
+            transform: scale(1.02); /* Minimaler Zoom im Bild für Hochwertigkeit */
         }
 
         /* Text & Button zentriert */
         .item-content { position: relative; z-index: 2; max-width: 85%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .item-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 12px; display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .item-title { font-size: clamp(1.4rem, 2vw, 2.2rem); font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.2; text-shadow: 0 2px 15px rgba(0,0,0,0.8); }
+        .item-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 12px; display: block; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        .item-title { font-size: clamp(1.4rem, 2vw, 2.2rem); font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.2; text-shadow: 0 2px 12px rgba(0,0,0,0.9); }
         
         /* Button Style */
-        .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.6); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.7); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
         .info-btn:hover { background-color: #ffffff; color: #0d0f12; }
 
         /* POP-UP BOX (Modal) STYLING */
@@ -90,7 +98,6 @@
             .portfolio-grid { grid-template-columns: 1fr; }
             .grid-item { height: 400px !important; }
             .grid-item.hero-item { grid-column: span 1; height: 350px; }
-            .grid-item.hero-item:hover { height: 350px; }
         }
     </style>
 </head>
@@ -213,25 +220,6 @@
     };
 
     function openModal(projectId) {
-        const data = projectData[projectId];
-        if(data) {
-            document.getElementById('modal-tag').innerText = data.tag;
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-desc').innerText = data.desc;
-            
-            const modal = document.getElementById('modal-container');
-            modal.classList.add('show');
-        }
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('modal-container');
-        modal.classList.remove('show');
-    }
-</script>
-
-</body>
-</html>
-
+        const data = projectData
 </body>
 </html>
