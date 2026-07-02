@@ -9,118 +9,140 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #0d0f12; color: #ffffff; overflow-x: hidden; }
         
-        /* Kompakterer Header mit Links oben rechts */
-        header { padding: 50px 4% 30px 4%; max-width: 1600px; margin: 0 auto; }
-        .logo-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .logo-area h1 { font-size: 2rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
-        
-        .header-right { display: flex; align-items: center; gap: 20px; }
-        .social-links { display: flex; gap: 15px; }
-        .social-links a { color: #8a929a; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        .social-links a:hover { color: #ffffff; }
-        .logo-area .status { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: #8a929a; border: 1px solid #333; padding: 6px 14px; border-radius: 50px; }
-        
-        /* Natürlich fließender Text */
-        .hero-text { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.3; max-width: 1000px; color: #f5f5f7; letter-spacing: -0.5px; }
-        .hero-text span { color: #8a929a; }
-
-        /* Seamless Grid */
-        .portfolio-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 2px; 
-            padding: 0; 
-            max-width: 100vw; 
-            margin: 30px auto 80px auto; 
-            background-color: #16191f;
+        /* Neuer, großzügigerer Header mit edlen Farbakzenten */
+        header { 
+            padding: 80px 4% 50px 4%; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            position: relative;
         }
         
-        /* Standard Kacheln */
-        .grid-item { 
-            position: relative; 
-            background-color: #16191f; 
-            height: 500px; 
+        /* Sanfter, unsichtbarer Lichtkegel im Hintergrund, der die Schrift edel abhebt */
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: 4%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 42, 95, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .logo-area { 
+            position: relative;
+            z-index: 1;
             display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
+            justify-content: space-between; 
             align-items: center; 
-            text-align: center; 
-            padding: 30px; 
-            overflow: hidden;
-        }
-
-        /* Hero Kachel (Icon League) - Text verschoben nach oben rechts */
-        .grid-item.hero-item {
-            grid-column: span 2;
-            height: 480px; 
-            align-items: flex-end; 
-            justify-content: flex-start; 
-            padding-top: 80px; 
-            padding-right: 8%; 
-        }
-
-        .hero-item .item-content {
-            align-items: flex-end;
-            text-align: right;
-        }
-
-        /* Bilder standardmäßig hell */
-        .grid-item img { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            filter: brightness(80%) contrast(105%); 
-            transition: transform 0.5s ease, filter 0.5s ease; 
-            z-index: 1; 
+            margin-bottom: 45px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 25px;
         }
         
-        .grid-item:hover img { 
-            filter: brightness(90%) contrast(110%);
-            transform: scale(1.02); 
+        .logo-area h1 { 
+            font-size: 2.2rem; 
+            font-weight: 900; 
+            letter-spacing: -1.5px; 
+            text-transform: uppercase; 
+            background: linear-gradient(180deg, #ffffff 0%, #a5a7ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        
+        .header-right { display: flex; align-items: center; gap: 30px; }
+        
+        /* Cleaner Look für die Links */
+        .social-links { display: flex; gap: 20px; }
+        .social-links a { 
+            color: #8a929a; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease; 
+        }
+        .social-links a:hover { color: #ff2a5f; }
+        
+        /* Status-Box mit dezentem, pulsierendem Neon-Punkt */
+        .logo-area .status { 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: #ffffff; 
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-area .status::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background-color: #00ff66; /* Grüner Live-Punkt */
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ff66;
+        }
+        
+        /* Großzügiger, fließender Text mit farblichem Highlight */
+        .hero-text { 
+            position: relative;
+            z-index: 1;
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem); 
+            font-weight: 400; 
+            line-height: 1.35; 
+            max-width: 1150px; 
+            color: #f5f5f7; 
+            letter-spacing: -0.5px; 
+        }
+        .hero-text .highlight { 
+            color: #ff2a5f; /* Deine Signatur-Farbe */
+            font-weight: 600;
+        }
+        .hero-text span { color: #8a929a; display: block; margin-top: 15px; font-size: 0.65em; font-weight: 300; letter-spacing: 0px; }
 
-        /* Text & Button Layout */
+        /* [Der restliche CSS-Code für .portfolio-grid, .grid-item, .info-btn etc. bleibt exakt gleich wie vorher] */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; padding: 0; max-width: 100vw; margin: 50px auto 80px auto; background-color: #16191f; }
+        .grid-item { position: relative; background-color: #16191f; height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; overflow: hidden; }
+        .grid-item.hero-item { grid-column: span 2; height: 480px; align-items: flex-end; justify-content: flex-start; padding-top: 80px; padding-right: 8%; }
+        .hero-item .item-content { align-items: flex-end; text-align: right; }
+        .grid-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(80%) contrast(105%); transition: transform 0.5s ease, filter 0.5s ease; z-index: 1; }
+        .grid-item:hover img { filter: brightness(90%) contrast(110%); transform: scale(1.02); }
         .item-content { position: relative; z-index: 2; max-width: 85%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .item-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 12px; display: block; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
         .item-title { font-size: clamp(1.4rem, 2vw, 2.2rem); font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.2; text-shadow: 0 2px 12px rgba(0,0,0,0.9); }
-        
-        /* Button Style */
         .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.7); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 3; }
         .info-btn:hover { background-color: #ffffff; color: #0d0f12; }
-
-        /* POP-UP BOX (Modal) STYLING */
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(13, 15, 18, 0.9); backdrop-filter: blur(15px); justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
         .modal.show { display: flex; opacity: 1; }
-        
         .modal-content { background-color: #16191f; border: 1px solid #2d3139; padding: 50px 40px; max-width: 650px; width: 100%; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: #8a929a; cursor: pointer; transition: color 0.2s; }
         .close-btn:hover { color: #ffffff; }
-        
         .modal-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 15px; display: block; }
         .modal-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.5px; text-transform: uppercase; }
         .modal-desc { font-size: 1.05rem; color: #cdced4; line-height: 1.6; font-weight: 300; margin-bottom: 30px; }
-
-        /* Styling für die Social-Logos im Pop-up */
         .modal-socials { display: flex; gap: 20px; border-top: 1px solid #2d3139; padding-top: 20px; }
         .modal-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background-color: rgba(255,255,255,0.05); border-radius: 8px; fill: #8a929a; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
         .modal-socials a:hover { background-color: rgba(255,255,255,0.1); fill: #ffffff; border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
         .modal-socials svg { width: 22px; height: 22px; }
-
         footer { background-color: #000000; padding: 120px 4%; text-align: center; }
         .footer-text { font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; letter-spacing: -2px; margin-bottom: 40px; }
         .mail-btn { display: inline-block; font-size: 1.2rem; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ff2a5f; padding-bottom: 8px; transition: color 0.3s; font-weight: 600; }
         .mail-btn:hover { color: #ff2a5f; }
 
         @media (max-width: 900px) {
-            .portfolio-grid { grid-template-columns: 1fr; margin-top: 20px; }
+            .portfolio-grid { grid-template-columns: 1fr; margin-top: 40px; }
             .grid-item { height: 400px !important; }
             .grid-item.hero-item { grid-column: span 1; height: 350px; align-items: center; text-align: center; padding: 30px; }
             .hero-item .item-content { align-items: center; text-align: center; }
-            header { padding: 40px 4% 20px 4%; }
-            .logo-area { flex-direction: column; align-items: flex-start; gap: 15px; }
+            header { padding: 50px 4% 30px 4%; }
+            .logo-area { flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 15px; }
+            .header-right { width: 100%; justify-content: space-between; }
         }
     </style>
 </head>
@@ -138,158 +160,7 @@
         </div>
     </div>
     <p class="hero-text">
-        I bring brands to life through live sports entertainment and large-scale event operations. <span>Bridging elite on-site venue logistics with structured corporate execution.</span>
+        I bring brands to life through <span class="highlight">live sports entertainment</span> and large-scale event operations. 
+        <span>Bridging elite on-site venue logistics with structured corporate execution.</span>
     </p>
 </header>
-
-<main class="portfolio-grid">
-
-    <div class="grid-item hero-item">
-        <img src="icon.jpg" alt="Icon League">
-        <div class="item-content">
-            <span class="item-tag">Live Sports Entertainment</span>
-            <h2 class="item-title">The Icon League</h2>
-            <button class="info-btn" onclick="openModal('icon-league')">View Project Details</button>
-        </div>
-    </div>
-
-    <div class="grid-item">
-        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" alt="Kin-Ball">
-        <div class="item-content">
-            <span class="item-tag">International Sports Growth</span>
-            <h2 class="item-title">IKBF</h2>
-            <button class="info-btn" onclick="openModal('ikbf')">View Project Details</button>
-        </div>
-    </div>
-
-    <div class="grid-item">
-        <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a27?auto=format&fit=crop&q=80&w=1000" alt="Basketball">
-        <div class="item-content">
-            <span class="item-tag">Major Event Hospitality</span>
-            <h2 class="item-title">FC Bayern & Paris Basketball</h2>
-            <button class="info-btn" onclick="openModal('basketball')">View Project Details</button>
-        </div>
-    </div>
-
-    <div class="grid-item">
-        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1000" alt="Football">
-        <div class="item-content">
-            <span class="item-tag">Coach Qualification & Licensing</span>
-            <h2 class="item-title">Bavarian Football Association</h2>
-            <button class="info-btn" onclick="openModal('bfv')">View Project Details</button>
-        </div>
-    </div>
-
-    <div class="grid-item">
-        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800" alt="Outdoor">
-        <div class="item-content">
-            <span class="item-tag">Sports & Leisure Coordination</span>
-            <h2 class="item-title">Cap Armor</h2>
-            <button class="info-btn" onclick="openModal('cap-armor')">View Project Details</button>
-        </div>
-    </div>
-
-    <div class="grid-item">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Corporate">
-        <div class="item-content">
-            <span class="item-tag">Strategic Logistics & Budgeting</span>
-            <h2 class="item-title">McKinsey & Company</h2>
-            <button class="info-btn" onclick="openModal('mckinsey')">View Project Details</button>
-        </div>
-    </div>
-
-</main>
-
-<div id="modal-container" class="modal" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <span id="modal-tag" class="modal-tag">Tag</span>
-        <h2 id="modal-title" class="modal-title">Title</h2>
-        <p id="modal-desc" class="modal-desc">Description goes here...</p>
-        
-        <div id="modal-socials" class="modal-socials" style="display: none;">
-            <a id="modal-link-instagram" href="#" target="_blank" title="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-            </a>
-            <a id="modal-link-twitch" href="#" target="_blank" title="Twitch">
-                <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
-            </a>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <h2 class="footer-text">Let’s build the next big thing together.</h2>
-    <a href="mailto:your-email@example.com" class="mail-btn">Get in touch</a>
-</footer>
-
-<script>
-    // Projektdatenbank mit optionalen Social-Media-Links
-    const projectData = {
-        'icon-league': {
-            tag: 'Live Sports Entertainment',
-            title: 'The Icon League — Event Manager',
-            desc: 'Season 03 (Junior Event Manager): Contributed within a 7-person team to engineer a high-impact arena tour across 15 matchdays in just 3 months. Achieved 100% sold-out capacities in Germany\'s largest stadiums (including Hamburg, Hannover, Leipzig, Düsseldorf) and packed Vienna\'s Stadthalle with 15,000 spectators. Handled sponsor activations, volunteers and VIP hospitality.\n\nSeason 04 (Event & Operations Manager): Stepped up to shoulder full operational execution as a downsized 2-person team, carrying the entire project responsibility just the two of us. Concepted and constructed a pro-sports arena inside a raw exhibition hall from scratch—installing custom grandstands, broadcast lighting, pitch setups, and locker rooms under strict corporate design guidelines. Solely responsible for managing all ticketing workflows throughout the season using ticket.io, handling everything from initial store preparation to final ticket distribution.Culminated in a spectacular, 100% sold-out grand finale at the Hallenstadion Zürich with 13,000 spectators and celebrity guest features including Toni Kroos, RAF Camora, Arda Saatci, and Agit Kabayel. Driven by a relentless hands-on mentality from empty floor to final whistle.',
-            // Hier sind deine eingetragenen Links hinterlegt:
-            socials: {
-                instagram: 'https://www.instagram.com/theiconleague/',
-                twitch: 'https://www.twitch.tv/theiconleague'
-            }
-        },
-        'ikbf': {
-            tag: 'International Sports Growth',
-            title: 'IKBF — International Event Manager',
-            desc: 'Driving global outreach and executing strategic measures to promote, expand, and scale the unique sport of Kin-Ball on an international scale.'
-        },
-        'basketball': {
-            tag: 'Major Event Hospitality',
-            title: 'FC Bayern München & Paris Basketball',
-            desc: 'Active court-side support and event operations volunteer during high-profile pro basketball fixtures, optimizing spectator workflows, ticketing gates, and general fan engagement.'
-        },
-        'bfv': {
-            tag: 'Coach Qualification & Licensing',
-            title: 'Bavarian Football Association (BFV)',
-            desc: 'Project management focused on structuring UEFA certification courses, coaching academies, and managing operational workflows ahead of the seasonal club roll-outs.'
-        },
-        'cap-armor': {
-            tag: 'Sports & Leisure Coordination',
-            title: 'Cap Armor — Sport Coordinator',
-            desc: 'On-site planning and execution of multidisciplinary sports programs, managing team schedules, workforce allocation, and active outdoor event coordination.'
-        },
-        'mckinsey': {
-            tag: 'Strategic Logistics & Budgeting',
-            title: 'McKinsey & Company — Executive Support',
-            desc: 'The foundation of operational excellence. Managing complex global logistics, rigid cost reporting, timeline governance, and calendar coordination alongside elite corporate consulting teams.'
-        }
-    };
-
-    function openModal(projectId) {
-        const data = projectData[projectId];
-        if(data) {
-            document.getElementById('modal-tag').innerText = data.tag;
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-desc').innerText = data.desc;
-            
-            // Social-Media-Leiste Logik
-            const socialsContainer = document.getElementById('modal-socials');
-            if (data.socials) {
-                document.getElementById('modal-link-instagram').href = data.socials.instagram;
-                document.getElementById('modal-link-twitch').href = data.socials.twitch;
-                socialsContainer.style.display = 'flex'; // Einblenden, wenn Links existieren
-            } else {
-                socialsContainer.style.display = 'none'; // Ausblenden bei anderen Projekten
-            }
-            
-            const modal = document.getElementById('modal-container');
-            modal.classList.add('show');
-        }
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('modal-container');
-        modal.classList.remove('show');
-    }
-</script>
-
-</body>
-</html>
