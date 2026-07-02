@@ -140,8 +140,8 @@
             text-align: right;
         }
 
-        /* Standard-Bilder */
-        .grid-item img.standard-img { 
+        /* Bilder standardmäßig hell */
+        .grid-item img { 
             position: absolute; 
             top: 0; 
             left: 0; 
@@ -152,7 +152,7 @@
             transition: transform 0.5s ease, filter 0.5s ease; 
             z-index: 1; 
         }
-        .grid-item:hover img.standard-img { 
+        .grid-item:hover img { 
             filter: brightness(90%) contrast(110%);
             transform: scale(1.02); 
         }
@@ -166,11 +166,29 @@
         .info-btn { display: inline-block; background-color: rgba(13, 15, 18, 0.7); border: 2px solid #ffffff; color: #ffffff; padding: 14px 28px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 3; }
         .info-btn:hover { background-color: #ffffff; color: #0d0f12; }
 
-        /* POP-UP BOX (Modal) STYLING */
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(13, 15, 18, 0.95); backdrop-filter: blur(15px); justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        /* POP-UP OVERLAY (Das Bild liegt JETZT hier im Hintergrund des gesamten Screens) */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 100; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(13, 15, 18, 0.85); /* Abdunkelung des Overlays */
+            backdrop-filter: blur(10px); 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         .modal.show { display: flex; opacity: 1; }
         
-        /* Modal-Box erhält relative Positionierung für den Bild-Hintergrund */
+        /* Der Textkasten im Pop-up bleibt clean und freistehend */
         .modal-content { 
             background-color: #16191f; 
             border: 1px solid #2d3139; 
@@ -178,33 +196,18 @@
             max-width: 650px; 
             width: 100%; 
             position: relative; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6); 
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        /* Dynamisches Hintergrundbild für das Pop-up */
-        .modal-bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.15; /* Sehr dezent, damit der Text im Vordergrund scharf lesbar bleibt */
-            transition: src 0.3s ease;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8); 
         }
         
-        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: #8a929a; cursor: pointer; transition: color 0.2s; z-index: 2; }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: #8a929a; cursor: pointer; transition: color 0.2s; }
         .close-btn:hover { color: #ffffff; }
         
-        .modal-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 15px; display: block; position: relative; z-index: 2; }
-        .modal-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.5px; text-transform: uppercase; position: relative; z-index: 2; }
-        .modal-desc { font-size: 1.05rem; color: #cdced4; line-height: 1.6; font-weight: 300; margin-bottom: 30px; white-space: pre-line; position: relative; z-index: 2; }
+        .modal-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff2a5f; font-weight: 700; margin-bottom: 15px; display: block; }
+        .modal-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.5px; text-transform: uppercase; }
+        .modal-desc { font-size: 1.05rem; color: #cdced4; line-height: 1.6; font-weight: 300; margin-bottom: 30px; white-space: pre-line; }
 
         /* Styling für die Social-Logos im Pop-up */
-        .modal-socials { display: flex; gap: 20px; border-top: 1px solid #2d3139; padding-top: 20px; position: relative; z-index: 2; }
+        .modal-socials { display: flex; gap: 20px; border-top: 1px solid #2d3139; padding-top: 20px; }
         .modal-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background-color: rgba(255,255,255,0.05); border-radius: 8px; fill: #8a929a; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
         .modal-socials a:hover { background-color: rgba(255,255,255,0.1); fill: #ffffff; border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
         .modal-socials svg { width: 22px; height: 22px; }
@@ -218,7 +221,6 @@
             .portfolio-grid { grid-template-columns: 1fr; margin-top: 40px; }
             .grid-item { height: 400px !important; }
             .grid-item.hero-item { grid-column: span 1; height: 350px; align-items: center; text-align: center; padding: 30px; }
-            .hero-item .item-content { align-items: center; text-align: center; }
             header { padding: 50px 4% 30px 4%; }
             .logo-area { flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 15px; }
             .header-right { width: 100%; justify-content: space-between; }
@@ -247,7 +249,7 @@
 <main class="portfolio-grid">
 
     <div class="grid-item hero-item">
-        <img class="standard-img" src="icon.jpg" alt="Icon League">
+        <img src="icon.jpg" alt="Icon League">
         <div class="item-content">
             <span class="item-tag">Live Sports Entertainment</span>
             <h2 class="item-title">The Icon League</h2>
@@ -256,7 +258,7 @@
     </div>
 
     <div class="grid-item">
-        <img class="standard-img" src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" alt="Kin-Ball">
+        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" alt="Kin-Ball">
         <div class="item-content">
             <span class="item-tag">International Sports Growth</span>
             <h2 class="item-title">IKBF</h2>
@@ -265,7 +267,7 @@
     </div>
 
     <div class="grid-item">
-        <img class="standard-img" src="paris.jpg" alt="Paris Basketball">
+        <img src="paris.jpg" alt="Paris Basketball">
         <div class="item-content">
             <span class="item-tag">Major Event Hospitality</span>
             <h2 class="item-title">FC Bayern & Paris Basketball</h2>
@@ -274,7 +276,7 @@
     </div>
 
     <div class="grid-item">
-        <img class="standard-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1000" alt="Football">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1000" alt="Football">
         <div class="item-content">
             <span class="item-tag">Coach Qualification & Licensing</span>
             <h2 class="item-title">Bavarian Football Association</h2>
@@ -283,7 +285,7 @@
     </div>
 
     <div class="grid-item">
-        <img class="standard-img" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800" alt="Outdoor">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800" alt="Outdoor">
         <div class="item-content">
             <span class="item-tag">Sports & Leisure Coordination</span>
             <h2 class="item-title">Cap Armor</h2>
@@ -292,7 +294,7 @@
     </div>
 
     <div class="grid-item">
-        <img class="standard-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Corporate">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Corporate">
         <div class="item-content">
             <span class="item-tag">Strategic Logistics & Budgeting</span>
             <h2 class="item-title">McKinsey & Company</h2>
@@ -304,8 +306,6 @@
 
 <div id="modal-container" class="modal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <img id="modal-bg" class="modal-bg-image" src="" alt="Background">
-        
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <span id="modal-tag" class="modal-tag">Tag</span>
         <h2 id="modal-title" class="modal-title">Title</h2>
@@ -347,7 +347,7 @@
             tag: 'Major Event Hospitality',
             title: 'FC Bayern München & Paris Basketball',
             desc: 'Active court-side support and event operations volunteer during high-profile pro basketball fixtures, optimizing spectator workflows, ticketing gates, and general fan engagement.',
-            bgImage: 'allianz.jpg' // HIER hinterlegt: Wenn geklickt, wird die Allianz Arena geladen!
+            bgImage: 'allianz.jpg' 
         },
         'bfv': {
             tag: 'Coach Qualification & Licensing',
@@ -373,16 +373,15 @@
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-desc').innerText = data.desc;
             
-            // Hintergrundbild-Logik fürs Pop-up
-            const bgImageElement = document.getElementById('modal-bg');
+            const modal = document.getElementById('modal-container');
+            
+            // Bild wird als Hintergrund für den gesamten Bildschirm gesetzt, nicht in die Box
             if (data.bgImage) {
-                bgImageElement.src = data.bgImage;
-                bgImageElement.style.display = 'block';
+                modal.style.backgroundImage = `linear-gradient(rgba(13, 15, 18, 0.75), rgba(13, 15, 18, 0.75)), url('${data.bgImage}')`;
             } else {
-                bgImageElement.style.display = 'none'; // Falls kein Bild definiert ist, bleibt es clean dunkel
+                modal.style.backgroundImage = 'none';
             }
             
-            // Social-Media-Leiste Logik
             const socialsContainer = document.getElementById('modal-socials');
             if (data.socials) {
                 document.getElementById('modal-link-instagram').href = data.socials.instagram;
@@ -392,7 +391,6 @@
                 socialsContainer.style.display = 'none';
             }
             
-            const modal = document.getElementById('modal-container');
             modal.classList.add('show');
         }
     }
